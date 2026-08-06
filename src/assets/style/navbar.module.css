@@ -69,15 +69,14 @@
   transition-duration: .15s;
 }
 
-.icons svg{
+.icons .ico{
   width: 30px;
   height: 30px;
-}
+} 
 
-.icons svg:hover{
+.icons .ico:hover{
   transform: scale(1.2);
 }
-
 
 
 

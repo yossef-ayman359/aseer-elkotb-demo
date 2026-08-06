@@ -8,10 +8,10 @@
     color: white;
     margin: 137px auto 256px;
     background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(10px);
     padding: 30px;
     border-radius: 16px;
+    border: 2px solid rgba(255, 255, 255, .2);
     max-width: fit-content;
 }
 
@@ -35,13 +35,20 @@
 
 .login-button{
     width: 150px;
+    height: 45px;
+
     background-color: rgba(0, 0, 0, .2);
     color: white;
+
+    outline: none;
     border: 1px solid white;
+    border-radius: 40px;
     padding: 10px;
     margin: 15px 275px;
     box-shadow: 0 0 8px white;
+
     direction: rtl;
+    cursor: pointer;
 }
 
 .login-button:hover{
