@@ -10,9 +10,9 @@ function Home() {
                 <Navbar isHome={true}></Navbar>
 
                 <section className={style["content"]}>
-                    <h1 className={ style["h1"]}>Welcom to Aseer Al-Kotb</h1>
-                    <p className={ style["p"]}>Aseer Al-Kotob is your premier destination for discovery and a passion for reading—an integrated platform combining a vast online bookstore with the latest Arabic and translated releases, alongside an interactive community of book lovers. Explore reviews, share recommendations, and shop your favorite books with a single click—delivered right to your doorstep, making your reading journey easier and more enjoyable.</p>
-                    <button className={style["login-button"]}>Login</button>
+                    <h1 className={ style["h1"]}>مرحباً بك في عصير الكتب</h1>
+                    <p className={ style["p"]}>عصير الكتب هي وجهتك الأولى للاكتشاف وشغف القراءة، منصة متكاملة تجمع بين مكتبة إلكترونية ضخمة وأحدث الإصدارات العربية والمترجمة، إلى جانب مجتمع تفاعلي لعشاق الكتب. استكشف المراجعات، وشارك التوصيات، اشترِ كتبك المفضلة بنقرة واحدة لتصلك مباشرة حتى باب منزلك، مما يجعل رحلة قراءتك أسهل وأكثر متعة.</p>
+                    <button className={style["login-button"]}>تسجيل الدخول</button>
                 </section>
                 
                 <Footer></Footer>

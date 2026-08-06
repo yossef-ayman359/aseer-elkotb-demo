@@ -18,15 +18,19 @@
 .h1{
     font-size: 42px;
     font-weight: 900;
+
+    direction: rtl;
 }
 
 .p{
     width: 700px;
-    line-height: 30px;
+    line-height: 50px;
 
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 500;
+
+    direction: rtl;
 }
 
 .login-button{
@@ -37,6 +41,7 @@
     padding: 10px;
     margin: 15px 275px;
     box-shadow: 0 0 8px white;
+    direction: rtl;
 }
 
 .login-button:hover{

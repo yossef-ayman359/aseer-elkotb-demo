@@ -8,7 +8,13 @@ let goToFooter = (e) => {
     }
 }
 
-function Navbar({ isHome = false})
+function Navbar({
+    isHome      = false,
+    isStore     = false,
+    isEBook     = false,
+    isPages     = false,
+    isBlog      = false
+})
 {
     const THEME = 'light';
 
@@ -16,18 +22,18 @@ function Navbar({ isHome = false})
         <>
             <header className={`${style["navbar"]} ${style[THEME]}`}>
                 <div className={ style["logo"] }>
-                    <a href="#">
-                        <img src="https://cdn.aseeralkotb.com/images/logo.svg" alt="" className={ style["logo"] } />
+                    <a href="/">
+                        <img src="https://cdn.aseeralkotb.com/images/logo.svg" alt="logo" className={ style["logo"] } />
                     </a>
                 </div>
                 
                 <nav className={style["links"]}>
-                    {!isHome && <a href="#">Home</a>}
-                    <a href="#">Shop</a>
-                    <a href="#">E-Books</a>
-                    <a href="#">Pages</a>
-                    <a href="#">Blog</a>
-                    <a href="#" onClick={goToFooter}>Contact</a>
+                    {!isHome    && <a href="/">الرئيسية</a>}
+                    {!isStore   && <a href="/Store">المتجر</a>}
+                    {!isPages   && <a href="#">الصفحات</a>}
+                    {!isEBook   && <a href="#">الكتب الالكترونية</a>}
+                    {!isBlog    && <a href="#">المدونة</a>}
+                    <button type='button' onClick={goToFooter}>تواصل معنا</button>
                 </nav>
 
                 <div className={style["icons"]}>

@@ -13,6 +13,16 @@
 
     transition-duration: .15s;
   }
+  .links button{
+    background-color: transparent;
+    color: white;
+    transition-duration: .15s;
+    font-size: 24px;
+    font-weight: 700;
+    border: 0;
+    font-family: 'Times New Roman';
+    cursor: pointer;
+  }
 
   .icons svg{
     fill: white;
@@ -24,6 +34,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 140px;
+  direction: rtl;
 
   background-color: 
   /* transparent; */

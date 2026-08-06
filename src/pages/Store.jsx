@@ -1,23 +1,32 @@
+import {Link} from 'react-router-dom'
+
 import Navbar from '../componants/navbar.jsx'
 import Footer from '../componants/footer.jsx'
 import style from '../assets/style/Store.module.css'
 import { topSellingBooks as topSale, fantasyBooks as fantasy}  from '../data/Book1.js'
+import BookPage from './Book.jsx'
+
+const goToBookPage = (book) => {
+    <Book book></Book>
+}
 
 function Store() {
     return (
         <>
-            <Navbar></Navbar>
+            <Navbar isStore={true}></Navbar>
 
             <p className={ style["section-name"]}>الكتب الأكثر مبيعًا 🏆</p>
             <section className={ style["top-sale"]}>
                 {topSale.sort((a, b) => b.id - a.id)
                         .map((book) => (
-                        <div key={ book.id}  className={style["card"]}>
-                            <img
-                                src={book.coverImage}
-                                alt={book.title}
-                                className={style["Img"]} />
-                            <span className={style["rank"]}>{ book.topRank}</span>
+                            <div key={book.id} className={style["card"]}>
+                                <Link to="/Book" state={{book}}>
+                                    <img
+                                        src={book.coverImage}
+                                        alt={book.title}
+                                        className={style["Img"]} />
+                                    <span className={style["rank"]}>{ book.topRank}</span>
+                                </Link>
                                 <div className={style["infos"]}>
                                     <div className={style["book-name"]}>
                                         <h2>{ book.title}</h2>
@@ -58,19 +67,21 @@ function Store() {
             <section className={ style["top-sale"]}>
                 {fantasy.sort((a, b) => b.id - a.id)
                         .map((book) => (
-                        <div key={ book.id}  className={style["card"]}>
-                            <img
-                                src={book.coverImage}
-                                alt={book.title}
-                                className={style["Img"]} />
-                            <span className={`${style["rank"]} ${style["discount"]}`}>{ book.discount}</span>
-                                <div className={style["infos"]}>
-                                    <div className={style["book-name"]}>
-                                        <h2>{ book.title}</h2>
-                                    </div>
-                                    <div className={style["book-author"]}>
-                                        <p>{book.author}</p>
-                                    </div>
+                        <div key={book.id} className={style["card"]}>
+                            <Link to="/Book" state={{book}}>
+                                <img
+                                    src={book.coverImage}
+                                    alt={book.title}
+                                    className={style["Img"]} />
+                                <span className={`${style["rank"]} ${style["discount"]}`}>{ book.discount}</span>
+                            </Link>
+                            <div className={style["infos"]}>
+                                <div className={style["book-name"]}>
+                                    <h2>{ book.title}</h2>
+                                </div>
+                                <div className={style["book-author"]}>
+                                    <p>{book.author}</p>
+                                </div>
                                 {
                                     book.price ? (
                                     <>
@@ -94,7 +105,7 @@ function Store() {
                                         </svg>
                                     </button>
                                 </div>
-                            </div>
+                        </div>
                     ))}
             </section>
 
