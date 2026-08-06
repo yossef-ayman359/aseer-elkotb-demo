@@ -1,0 +1,49 @@
+.homeDiv{
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/Shelf.jpg');
+}
+
+.content{
+    color: white;
+    margin: 137px auto 256px;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    padding: 30px;
+    border-radius: 16px;
+    max-width: fit-content;
+}
+
+.h1{
+    font-size: 42px;
+    font-weight: 900;
+}
+
+.p{
+    width: 700px;
+    line-height: 30px;
+
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.login-button{
+    width: 150px;
+    background-color: rgba(0, 0, 0, .2);
+    color: white;
+    border: 1px solid white;
+    padding: 10px;
+    margin: 15px 275px;
+    box-shadow: 0 0 8px white;
+}
+
+.login-button:hover{
+    /* background-color: rgba(255, 255, 255, .2); */
+    box-shadow: 1px 1px 15px white;
+}
+
+.login-button:active{
+    background-color: rgba(255, 228, 196, .4);
+}
