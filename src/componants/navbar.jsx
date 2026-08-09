@@ -1,11 +1,15 @@
 import style from '../assets/style/navbar.module.css'
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 /* Icons */
 import { FaRegUserCircle } from "react-icons/fa";   // if user not register
 import { FaUserCircle } from "react-icons/fa";      // if user register
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { useUserData } from './userDataProvider';
+import { MdLogin } from "react-icons/md";
+import { MdLogout } from "react-icons/md";
 /*  */
 
 let goToFooter = (e) => {    
@@ -16,14 +20,17 @@ let goToFooter = (e) => {
 }
 
 function Navbar({
-    isHome      = false,
-    isStore     = false,
-    isEBook     = false,
-    isPages     = false,
-    isBlog      = false
-})
-{
+        isHome      = false,
+        isStore     = false,
+        isEBook     = false,
+        isPages     = false,
+        isBlog      = false
+}) {
+    const { currentUser, logout } = useUserData()
     const THEME = 'light';
+
+    // const isSigned = false
+    const userCartLength = currentUser?.cart?.length || 0   
 
     return (
         <>
@@ -44,14 +51,35 @@ function Navbar({
                 </nav>
 
                 <div className={style["icons"]}>
-                    <a href="#" className='cart'>
-                        <MdOutlineShoppingCart className={ style["ico"]} />
-                    </a>
+                    <Link to="" className={style["cart"]}>
+                        <MdOutlineShoppingCart className={style["ico"]} />
+                        {userCartLength ? 
+                            <span className={style["order-count"]}>
+                                {userCartLength}
+                            </span>
+                            :
+                            ''
+                        }
+                    </Link>
                     <a href="#" className='favorite'>
                         <MdOutlineFavoriteBorder className={ style["ico"]} />
                     </a>
                     <a href="#" className="person">
-                        <FaRegUserCircle className={ style["ico"]} />
+                        {currentUser ?
+                            <>
+                                {/* if user register */}
+                                <button onClick={logout} className={style["logout-btn"]}>
+                                    <MdLogout className={style["ico"]}/>
+                                </button>
+                            </>
+                            :
+                            <>
+                                {/*  if user not register */}
+                                <Link to="/Login">
+                                    <MdLogin className={style["ico"]}/>
+                                </Link>
+                            </>
+                        }
                     </a>
                 </div>
             </header>

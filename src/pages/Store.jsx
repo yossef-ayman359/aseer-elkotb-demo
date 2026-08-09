@@ -1,16 +1,35 @@
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 import Navbar from '../componants/navbar.jsx'
 import Footer from '../componants/footer.jsx'
 import style from '../assets/style/Store.module.css'
 import { topSellingBooks as topSale, fantasyBooks as fantasy}  from '../data/Book1.js'
 import BookPage from './Book.jsx'
+import { useUserData } from '../componants/userDataProvider.jsx'
 
 const goToBookPage = (book) => {
     <Book book></Book>
 }
 
 function Store() {
+    const navigate = useNavigate()
+
+    const { currentUser, updateUserProfile } = useUserData()
+
+    let addToCart = (book) => {
+        if (!currentUser) {
+            navigate('/Login')
+            alert("يرجى تسجيل الدخول إضافة كتب للسلة");
+            return;
+        }
+
+        const currentCart = currentUser.cart || [];
+
+        const updatedCart = [...currentCart, book];
+
+        updateUserProfile({ cart: updatedCart });
+    }
+
     return (
         <>
             <Navbar isStore={true}></Navbar>
@@ -34,19 +53,19 @@ function Store() {
                                     <div className={style["book-author"]}>
                                         <p>{book.author}</p>
                                     </div>
-                                {
-                                    book.price ? (
-                                    <>
-                                        <div className={style["price-container"]}>
-                                            <span className={style["old-price"]}>{book.originalPrice} ج.م</span>
-                                            <span className={style["new-price"]}>{book.price} ج.م</span>
-                                        </div>
-                                    </>
-                                    ) : (
-                                        <span className={style["not-avalible"]}>غير متوفر</span>
-                                    )
-                                }
-                                    <button className={style["btn"]}>
+                                    {
+                                        book.price ? (
+                                        <>
+                                            <div className={style["price-container"]}>
+                                                <span className={style["old-price"]}>{book.originalPrice} ج.م</span>
+                                                <span className={style["new-price"]}>{book.price} ج.م</span>
+                                            </div>
+                                        </>
+                                        ) : (
+                                            <span className={style["not-avalible"]}>غير متوفر</span>
+                                        )
+                                    }
+                                    <button onClick={ () => {addToCart(book)} } className={style["btn"]}>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             height="24px"
@@ -82,19 +101,19 @@ function Store() {
                                 <div className={style["book-author"]}>
                                     <p>{book.author}</p>
                                 </div>
-                                {
-                                    book.price ? (
-                                    <>
-                                        <div className={style["price-container"]}>
-                                            <span className={style["old-price"]}>{book.originalPrice} ج.م</span>
-                                            <span className={style["new-price"]}>{book.price} ج.م</span>
-                                        </div>
-                                    </>
-                                    ) : (
-                                        <span className={style["not-avalible"]}>غير متوفر</span>
-                                    )
-                                }
-                                    <button className={style["btn"]}>
+                                    {
+                                        book.price ? (
+                                        <>
+                                            <div className={style["price-container"]}>
+                                                <span className={style["old-price"]}>{book.originalPrice} ج.م</span>
+                                                <span className={style["new-price"]}>{book.price} ج.م</span>
+                                            </div>
+                                        </>
+                                        ) : (
+                                            <span className={style["not-avalible"]}>غير متوفر</span>
+                                        )
+                                    }
+                                    <button onClick={ () => {addToCart(book)} } className={style["btn"]}>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             height="24px"

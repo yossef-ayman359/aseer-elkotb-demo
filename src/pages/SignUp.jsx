@@ -1,4 +1,4 @@
-import {href, Link, replace, useNavigate} from 'react-router-dom'
+import {href, Link, useNavigate} from 'react-router-dom'
 
 import style from '../assets/style/LoginForm.module.css'
 
@@ -8,35 +8,41 @@ import { useState } from 'react';
 import { useUserData } from '../componants/userDataProvider';
 /*  */
 
-function Login() {
-    const [userName, setUserName] = useState('')
-    const [password, setPassword] = useState('')
+
+function SignUp() {
     const [hasError, setHasError] = useState(false)
 
-    // call login function to set currentUser
-    const { login } = useUserData();
-    
-    const navigate = useNavigate()
+    const [user, setUser] = useState({
+        userName: '', password:'', favList: [], cart: []
+    })
 
-    let handleLogin = (e) => {
+    const navigate = useNavigate()
+    const { login } = useUserData()
+
+    let handleSignUp = (e) => {
         e.preventDefault()
 
-        const users = JSON.parse(localStorage.getItem("users")) || []
-
-        // check if user is exist 
-        const isValid = users.find(
-            (user) => {
-                return user.userName == userName && user.password == password
+        let users = JSON.parse(localStorage.getItem("users")) || []
+        const isExist = users.find(
+            (User) => {
+                return user.userName === User.userName
             }
         )
-        if (isValid) {
-            login(isValid); // set currentUser
-            setHasError(false)
-            navigate('/')
-        } else {
+
+        if (isExist) {
             setHasError(true)
+            return;
         }
+        
+        users = [...users, user]
+        localStorage.setItem('users', JSON.stringify(users))
+        localStorage.setItem('currentUser', JSON.stringify(user))
+        setUser({userName: '', password: ''})
+        setHasError(false)
+        login(user)
+        navigate('/')
     }
+
 
     return (
         <>
@@ -48,15 +54,17 @@ function Login() {
                 </div>
 
                 <div className={style["form-background"]}>
-                    <form action="post" className={style["form"]}>
-                        <h1 className={style["h1"]}>تسجيل الدخول</h1>
+                    <form onSubmit={handleSignUp} className={style["form"]}>
+                        <h1 className={style["h1"]}>إنشاء حساب جديد</h1>
                         <div className={`${style["input-box"]} ${hasError ? style["error-input"] : ''}`}>
                             <input
                                 type="text"
                                 placeholder="اسم المستخدم"
-                                value={userName}
+                                value={user.userName}
                                 onChange={(e) => {
-                                    setUserName(e.target.value)
+                                    setUser(prevUser => ({
+                                        ...prevUser, userName: e.target.value
+                                    }));
                                     setHasError(false)
                                 }}
                                 required />
@@ -65,32 +73,24 @@ function Login() {
                             <input
                                 type="password"
                                 placeholder="كلمه المرور"
-                                value={password}
+                                value={user.password}
                                 onChange={(e) => {
-                                    setPassword(e.target.value)
+                                    setUser(prevUser => ({
+                                        ...prevUser, password: e.target.value
+                                    }));
                                     setHasError(false)
                                 }}
                                 required />
                         </div>
 
-                        <div className={style["remember-forgot"]}>
-                            <label>
-                                تذكرنى
-                                <input type="checkbox" />
-                            </label>
-                            <a href="#">نسيت كلمه السر؟</a>
-                        </div>
-
                         <button
                             type="submit"
                             className={style["submit"]}
-                            onClick={ handleLogin}>
-                            Login
+                        >
+                            إنشاء حساب
                         </button>
 
-                        <div className={style["reg-link"]}>
-                            <p>ليس لديك حساب؟ <a href="/Signup">إنشاء حساب</a></p>
-                        </div>
+
                     </form>
                 </div>
             </div>
@@ -98,4 +98,4 @@ function Login() {
     )
 }
 
-export default Login
+export default SignUp
