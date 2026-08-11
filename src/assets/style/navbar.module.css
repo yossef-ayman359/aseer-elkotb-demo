@@ -81,14 +81,16 @@
 .logout-btn{
   background-color: transparent;
   border: none;
+
+  cursor: pointer;
 }
 
-.cart{
+.cart, .favorite{
   position: relative;
   display: inline-block;
 }
 
-.cart .order-count{
+.counter{
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -104,24 +106,3 @@
   font-size: 17px;
   font-weight: 900;
 }
-
-/* .dark{
-  .links a{
-    text-decoration: none;
-    color: 
-    black;
-
-    transition-duration: .15s;
-  }
-  
-  .links a:hover{
-    text-decoration: underline solid black 3px;
-    text-underline-offset: 10px;
-
-    transform: scale(1.1);
-  }
-
-  .icons svg{
-    fill: black;
-  }
-} */

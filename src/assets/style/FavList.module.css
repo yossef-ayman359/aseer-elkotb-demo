@@ -1,4 +1,4 @@
-.Cart-container{
+.container{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -10,7 +10,6 @@
 .main-container{
     flex: 1;
 }
-
 
 .summary{
     width: 90%;
@@ -91,6 +90,7 @@
 .details .old-price{
     color: gray;
     text-decoration: line-through red;
+    margin: 0 10px 0 0;
 }
 
 .details .new-price{
@@ -98,26 +98,7 @@
     font-weight: 700;
 }
 
-.total-item-price, .quantity-controls{
-    grid-column: 3;
-}
-
-.total-quantity-controls {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    row-gap: 20px;
-}
-
-.quantity-controls{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    place-items: center;
-}
-
-.quantity-controls .btn, .Remove-btn {
+.Remove-btn {
     background-color: transparent;
 
     border: none;
@@ -125,7 +106,12 @@
     cursor: pointer;
 }
 
-.quantity-controls .quantity{
-    font-size: 20px;
-    font-weight: bold;
+.not-avalible{
+    margin: 41px auto;
+    grid-column: 2/3;
+
+    text-align: center;
+
+    font-weight: 900;
+    font-size: 25px;
 }

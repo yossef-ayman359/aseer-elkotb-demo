@@ -10,19 +10,20 @@ import Book from './pages/Book.jsx'
 import Login from './pages/login.jsx'
 import SignUp from './pages/SignUp.jsx'
 import Cart from './pages/Cart.jsx'
-
+import Favorite from './pages/Favorite.jsx'
 // import './App.css'
 
 function App() {  
   return (
     <>
       <Routes>
-        <Route path='/'         element={<Home />}>   </Route>
-        <Route path='/Store'    element={<Store />}>  </Route>
-        <Route path='/Book'     element={<Book />}>   </Route>
-        <Route path='/Login'    element={<Login />}>  </Route>
-        <Route path='/Signup'   element={<SignUp />}> </Route>
-        <Route path='/Cart'     element={<Cart />}>   </Route>
+        <Route path='/'               element={<Home />}>       </Route>
+        <Route path='/Store'          element={<Store />}>      </Route>
+        <Route path='/Book'           element={<Book />}>       </Route>
+        <Route path='/Login'          element={<Login />}>      </Route>
+        <Route path='/Signup'         element={<SignUp />}>     </Route>
+        <Route path='/Cart'           element={<Cart />}>       </Route>
+        <Route path='/Favorite'       element={<Favorite />}>   </Route>
       </Routes>
     </>
   )

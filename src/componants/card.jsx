@@ -1,11 +1,14 @@
 import style from '../assets/style/Card.module.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useUserData } from './userDataProvider';
+import { MdOutlineFavoriteBorder, MdOutlineFavorite  } from "react-icons/md";
+
 
 function Card({book}) {
     const { currentUser, updateUserProfile } = useUserData()
+    const navigate = useNavigate()
     
-    let addToCart = (book) => {
+    const addToCart = (book) => {
         if (!currentUser) {
             navigate('/Login')
             alert("يرجى تسجيل الدخول إضافة كتب للسلة");
@@ -37,21 +40,60 @@ function Card({book}) {
         updateUserProfile({ cart: updatedCart });
     }
 
+    const isFavExist = (book) => {
+        return currentUser?.favList.some(item => item.id === book.id)
+    }
+
+    let addToFav = (book) => {
+        if (!currentUser) {
+            navigate('/Login')
+            alert("يرجى تسجيل الدخول لإضافة كتب للمفضلة");
+            return;
+        }
+
+        const currentFav = currentUser.favList || [];
+
+        const isExist = currentFav.find(item => item.id === book.id);
+
+        let updatedFav;
+        if (isExist) {
+            updatedFav = currentFav.filter(item => 
+                item.id !== book.id
+            )
+        } else {
+            updatedFav = [...currentFav, book]
+        }
+
+        updateUserProfile({ favList: updatedFav })
+    }
+
     return (
         <>
             <div key={book.id} className={style["card"]}>
-                <Link to="/Book" state={{book}}>
-                    <img
-                        src={book.coverImage}
-                        alt={book.title}
-                        className={style["Img"]} />
-                    {
-                        book.topRank != null ? 
-                        <span className={`${style["rank"]}`}>{ book.topRank}</span>
-                        :
-                        <span className={`${style["rank"]}`}>{ book.discount}</span>
-                    }
-                </Link>
+                <div className={style["Img-div"]}>
+                    <Link to="/Book" state={{book}}>
+                        <img
+                            src={book.coverImage}
+                            alt={book.title}
+                            className={style["Img"]}
+                        />
+                        {
+                            book.topRank != null ? 
+                            <span className={`${style["badge"]} ${style["rank"]}`}>{ book.topRank}</span>
+                            :
+                            book.discount != null ? (
+                                <span className={`${style["badge"]} ${style["discount"]}`}>{book.discount}</span>
+                            ) : null
+                        }
+                    </Link>
+                    <button onClick={() => addToFav(book)} className={`${style["fav"]}`}>
+                        {isFavExist(book) ? 
+                            <MdOutlineFavorite size={30} fill='white'/>
+                            :
+                            <MdOutlineFavoriteBorder size={30} fill='white' />
+                        }
+                    </button>
+                </div>
                 <div className={style["infos"]}>
                     <div className={style["book-name"]}>
                         <h2>{ book.title}</h2>

@@ -31,6 +31,7 @@ function Navbar({
 
     // const isSigned = false
     const userCartLength = currentUser?.cart?.length || 0   
+    const userFavLength = currentUser?.favList?.length || 0   
 
     return (
         <>
@@ -54,33 +55,38 @@ function Navbar({
                     <Link to="/Cart" className={style["cart"]}>
                         <MdOutlineShoppingCart className={style["ico"]} />
                         {userCartLength ? 
-                            <span className={style["order-count"]}>
+                            <span className={style["counter"]}>
                                 {userCartLength}
                             </span>
                             :
                             ''
                         }
                     </Link>
-                    <a href="#" className='favorite'>
-                        <MdOutlineFavoriteBorder className={ style["ico"]} />
-                    </a>
-                    <a href="#" className="person">
-                        {currentUser ?
-                            <>
-                                {/* if user register */}
-                                <button onClick={logout} className={style["logout-btn"]}>
-                                    <MdLogout className={style["ico"]}/>
-                                </button>
-                            </>
+                    <Link to="/Favorite" className={style["favorite"]}>
+                        <MdOutlineFavoriteBorder className={style["ico"]} />
+                        {userFavLength ? 
+                            <span className={style["counter"]}>
+                                {userFavLength}
+                            </span>
                             :
-                            <>
-                                {/*  if user not register */}
-                                <Link to="/Login">
-                                    <MdLogin className={style["ico"]}/>
-                                </Link>
-                            </>
+                            ''
                         }
-                    </a>
+                    </Link>
+                    {currentUser ?
+                        <>
+                            {/* if user register */}
+                            <button onClick={logout} className={style["logout-btn"]}>
+                                <MdLogout className={style["ico"]}/>
+                            </button>
+                        </>
+                        :
+                        <>
+                            {/*  if user not register */}
+                            <Link to="/Login">
+                                <MdLogin className={style["ico"]}/>
+                            </Link>
+                        </>
+                    }
                 </div>
             </header>
         </>

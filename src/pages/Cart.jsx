@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import Navbar from "../componants/navbar";
 import Footer from '../componants/footer';
 import { useUserData } from "../componants/userDataProvider";
@@ -8,11 +8,11 @@ import style from "../assets/style/Cart.module.css"
 
 function Cart() {
     const { currentUser, updateUserProfile } = useUserData();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     console.log(currentUser);
     if (!currentUser) {
-        console.log("Not req");
+        console.log("Not reg");
         return <Navigate to="/Login" replace />;
     }
 
@@ -30,7 +30,6 @@ function Cart() {
 
     const totalUniqBooks = currentUser.cart.length
 
-    
 
 
     const handleQuantityChange = (bookId, amount) => {
