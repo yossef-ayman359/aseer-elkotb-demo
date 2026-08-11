@@ -51,7 +51,7 @@ function Navbar({
                 </nav>
 
                 <div className={style["icons"]}>
-                    <Link to="" className={style["cart"]}>
+                    <Link to="/Cart" className={style["cart"]}>
                         <MdOutlineShoppingCart className={style["ico"]} />
                         {userCartLength ? 
                             <span className={style["order-count"]}>
