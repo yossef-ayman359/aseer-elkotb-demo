@@ -43,6 +43,7 @@
     border-radius: 20px;
     border: 1px solid black;
     
+    position: relative;
     overflow: hidden;
     transition-duration: .15s;
     transform: scale(.9);

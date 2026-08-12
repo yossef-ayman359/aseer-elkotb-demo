@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { topSellingBooks as topSale, fantasyBooks as fantasy } from '../data/Book1.js'
 import style from '../assets/style/BookPage.module.css'
@@ -10,11 +10,13 @@ import { MdOutlineFavoriteBorder, MdOutlineFavorite  } from "react-icons/md";
 
 function BookPage()
 {
+    const { id } = useParams();
     const location = useLocation();
     const { currentUser, updateUserProfile } = useUserData();
     const navigate = useNavigate();
     
-    const book = location.state?.book;
+    const book = location.state?.book ||
+        [...topSale, ...fantasy].find(b => b.id === NUmber(id));
 
     if (!book) {
         return <div>لم يتم العثور على تفاصيل الكتاب.</div>;
