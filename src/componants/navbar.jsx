@@ -10,6 +10,11 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { useUserData } from './userDataProvider';
 import { MdLogin } from "react-icons/md";
 import { MdLogout } from "react-icons/md";
+import { MdHome } from "react-icons/md";
+import { RiCustomerService2Line } from "react-icons/ri";
+import { BsShopWindow } from "react-icons/bs";
+import { IoStorefrontOutline } from "react-icons/io5";
+import { LiaStoreAltSolid } from "react-icons/lia";
 /*  */
 
 let goToFooter = (e) => {    
@@ -41,18 +46,26 @@ function Navbar({
                         <img src="https://cdn.aseeralkotb.com/images/logo.svg" alt="logo" className={ style["logo"] } />
                     </a>
                 </div>
-                
-                <nav className={style["links"]}>
-                    {!isHome    && <a href="/">الرئيسية</a>}
-                    {!isStore   && <a href="/Store">المتجر</a>}
-                    {!isPages   && <a href="#">الصفحات</a>}
-                    {!isEBook   && <a href="#">الكتب الالكترونية</a>}
-                    {!isBlog    && <a href="#">المدونة</a>}
-                    <button type='button' onClick={goToFooter}>تواصل معنا</button>
-                </nav>
 
                 <div className={style["icons"]}>
-                    <Link to="/Cart" className={style["cart"]}>
+                        {
+                            isHome ?
+                            ''
+                            :
+                            <Link to='/' className='Home'>
+                                <MdHome className={ style["ico"]} />
+                            </Link>
+                        }
+                        {
+                            isStore ? 
+                                null
+                                :
+                                <Link to='/Store'>
+                                    <LiaStoreAltSolid className={ style["ico"]}/>
+                                </Link>
+                        }
+                    {/* {!isHome    && <a href="/"></a>} */}
+                    <Link to="/Cart" className={style["link-ico"]}>
                         <MdOutlineShoppingCart className={style["ico"]} />
                         {userCartLength ? 
                             <span className={style["counter"]}>
@@ -62,7 +75,7 @@ function Navbar({
                             ''
                         }
                     </Link>
-                    <Link to="/Favorite" className={style["favorite"]}>
+                    <Link to="/Favorite" className={style["link-ico"]}>
                         <MdOutlineFavoriteBorder className={style["ico"]} />
                         {userFavLength ? 
                             <span className={style["counter"]}>
@@ -72,6 +85,9 @@ function Navbar({
                             ''
                         }
                     </Link>
+                    <button onClick={goToFooter} className={style["logout-btn"]}>
+                        <RiCustomerService2Line className={style["ico"]}/>
+                    </button>
                     {currentUser ?
                         <>
                             {/* if user register */}

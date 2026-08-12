@@ -86,8 +86,8 @@
 
 .fav{
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 10px;
+    left: 10px;
     z-index: 10;
 
     width: 40px;
@@ -157,7 +157,7 @@
     
     background-color: white;
     color: black;
-    box-shadow: 3px 3px 5px 5px rgba(0,0,0,.7);
+    box-shadow: 0px 0px 10px 5px rgba(0,0,0,.7);
     
     svg{
         fill: black;

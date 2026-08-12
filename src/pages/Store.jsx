@@ -34,16 +34,6 @@ function Store() {
                     ))}
             </section>
 
-            <hr />
-
-            <p className={ style["section-name"]}>عوالم الفانتازيا 👻</p>
-            <section className={ `${style["top-sale"]} ${style["top-sale"]}`}>
-                {fantasy.sort((a, b) => a.id - b.id)
-                        .map((book) => (
-                            <Card key={ book.id } book={book} />
-                    ))}
-            </section>
-
             <Footer></Footer>
         </>
     )

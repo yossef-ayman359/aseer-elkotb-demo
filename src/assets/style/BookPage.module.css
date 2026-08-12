@@ -50,7 +50,7 @@
 
 .img-div:hover{
     box-shadow: 0 0 10px black;
-    transform: scale(1);
+    transform: scale(.95);
 }
 
 .Img{
@@ -58,6 +58,26 @@
     height: 100%;
 
     display: block;
+}
+
+.fav{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+
+    width: 40px;
+    height: 40px;
+
+    background-color: rgba(0, 0, 0, 0.7);
+
+    border: none;
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+    
+    cursor: pointer;
 }
 
 .Book-title{
@@ -127,7 +147,7 @@
     background-color: rgba(191, 174, 162, 80%);
     
     background-color: white;
-    box-shadow: 5px 5px 5px 5px rgba(0,0,0,.7);
+    box-shadow: 0px 0px 10px 5px rgba(0,0,0,.7);
 }
 
 .btn:hover svg{

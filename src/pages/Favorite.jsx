@@ -8,12 +8,9 @@ import style from '../assets/style/FavList.module.css'
 
 function Favorite() {
     const { currentUser, updateUserProfile } = useUserData();
-    const navigate = useNavigate();
 
     if (!currentUser) {
-        console.log("Not reg");
-        navigate("/Login")
-        return ;
+        return <Navigate to="/Login" replace />;
     }
 
     const currentFav = currentUser.favList || [];

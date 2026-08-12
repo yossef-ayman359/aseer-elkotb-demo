@@ -8,11 +8,8 @@ import style from "../assets/style/Cart.module.css"
 
 function Cart() {
     const { currentUser, updateUserProfile } = useUserData();
-    // const navigate = useNavigate();
 
-    console.log(currentUser);
     if (!currentUser) {
-        console.log("Not reg");
         return <Navigate to="/Login" replace />;
     }
 

@@ -42,12 +42,14 @@
 }
 
 .items-div{
-    margin: 20px 5px;
+    margin: 20px 27px;
     /* background-color: black; */
     direction: rtl;
 
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: 450px 250px 450px 250px;
+
+    row-gap: 10px;
 }
 
 .item, .total-quantity-controls {
@@ -64,6 +66,8 @@
     grid-template-columns: auto 1fr auto; 
     align-items: center;
     gap: 5px;
+
+    max-width: 395px;
 }
 
 .book-cover{

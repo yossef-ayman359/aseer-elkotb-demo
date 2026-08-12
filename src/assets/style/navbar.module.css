@@ -46,18 +46,9 @@
   z-index: 1000;
 }
 
-.logo{
+.navbar .logo{
   height: 50px;
   width: auto;
-}
-
-.links{
-  display: flex;
-  align-items: center;
-
-  gap: 50px;
-  font-size: 24px;
-  font-weight: 700;
 }
 
 .icons{
@@ -69,28 +60,30 @@
   transition-duration: .15s;
 }
 
-.icons .ico{
+.icons .ico {
   width: 30px;
   height: 30px;
+
 } 
 
-.icons .ico:hover{
+.icons .ico:hover {
   transform: scale(1.2);
 }
 
-.logout-btn{
+.logout-btn {
+
   background-color: transparent;
   border: none;
 
   cursor: pointer;
 }
 
-.cart, .favorite{
+.link-ico {
   position: relative;
   display: inline-block;
 }
 
-.counter{
+.link-ico .counter{
   width: 20px;
   height: 20px;
   border-radius: 50%;

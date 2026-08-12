@@ -1,21 +1,82 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { topSellingBooks as topSale, fantasyBooks as fantasy } from '../data/Book1.js'
 import style from '../assets/style/BookPage.module.css'
 import Navbar from '../componants/navbar.jsx'
 import Footer from '../componants/footer.jsx'
+import { useUserData } from '../componants/userDataProvider.jsx';
+import { MdOutlineFavoriteBorder, MdOutlineFavorite  } from "react-icons/md";
+
 
 function BookPage()
 {
-    window.scrollTo(0, 0);
     const location = useLocation();
+    const { currentUser, updateUserProfile } = useUserData();
+    const navigate = useNavigate();
     
-    // الوصول إلى كائن الكتاب الممرر عبر الـ state
     const book = location.state?.book;
 
-    // فحص أمان في حالة دخول المستخدم للرابط مباشرة دون الضغط على الكارت
     if (!book) {
         return <div>لم يتم العثور على تفاصيل الكتاب.</div>;
+    }
+
+    const addToCart = (book) => {
+        if (!currentUser) {
+            navigate('/Login')
+            alert("يرجى تسجيل الدخول إضافة كتب للسلة");
+            return;
+        }
+
+        if (!book.inStock)
+        {
+            alert("الكتاب غير متوفر الأن")
+            return;
+        }
+
+        const currentCart = currentUser.cart || [];
+
+        const isExist = currentCart.find(item => item.id === book.id)
+
+        let updatedCart;
+        if (isExist) {
+            updatedCart = currentCart.map(item => 
+                item.id === book.id 
+                    ? { ...item, count: (item.count) + 1 } 
+                    : item
+            );
+        } else {
+            updatedCart = [...currentCart, { ...book, count: 1 }];
+        }
+
+
+        updateUserProfile({ cart: updatedCart });
+    }
+
+        const isFavExist = (book) => {
+        return currentUser?.favList.some(item => item.id === book.id)
+    }
+
+    let addToFav = (book) => {
+        if (!currentUser) {
+            navigate('/Login')
+            alert("يرجى تسجيل الدخول لإضافة كتب للمفضلة");
+            return;
+        }
+
+        const currentFav = currentUser.favList || [];
+
+        const isExist = currentFav.find(item => item.id === book.id);
+
+        let updatedFav;
+        if (isExist) {
+            updatedFav = currentFav.filter(item => 
+                item.id !== book.id
+            )
+        } else {
+            updatedFav = [...currentFav, book]
+        }
+
+        updateUserProfile({ favList: updatedFav })
     }
 
     let bookDataPrice;
@@ -34,7 +95,7 @@ function BookPage()
                         <p className={`${style["col1"]}`}>هتوفر</p>
                         <p className={`${style["col2"]}`}>{ book.originalPrice - book.price } ج.م</p>
                     </div>
-                    <button className={style["btn"]}>
+                    <button onClick={ () => {addToCart(book)} } className={style["btn"]}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             height="24px"
@@ -59,6 +120,13 @@ function BookPage()
                 <aside className={ style["right-section"]}>
                     <div className={ style["img-div"]}>
                         <img src={book.coverImage} alt={book.title} className={style["Img"]} />
+                        <button onClick={() => addToFav(book)} className={`${style["fav"]}`}>
+                            {isFavExist(book) ? 
+                                <MdOutlineFavorite size={30} fill='white'/>
+                                :
+                                <MdOutlineFavoriteBorder size={30} fill='white' />
+                            }
+                        </button>
                     </div>
                     <h2 className={style["Book-title"]}>{book.title}</h2>
                     {bookDataPrice}
