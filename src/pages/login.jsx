@@ -73,13 +73,13 @@ function Login() {
                                 required />
                         </div>
 
-                        <div className={style["remember-forgot"]}>
+                        {/* <div className={style["remember-forgot"]}>
                             <label>
                                 تذكرنى
                                 <input type="checkbox" />
                             </label>
                             <a href="#">نسيت كلمه السر؟</a>
-                        </div>
+                        </div> */}
 
                         <button
                             type="submit"

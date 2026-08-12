@@ -79,7 +79,7 @@
     direction: rtl;
 }
 
-.remember-forgot{
+/* .remember-forgot{
     display: flex;
     justify-content: space-between;
     margin: -15px 0 15px;
@@ -100,7 +100,7 @@
 .remember-forgot a:hover{
     text-decoration: underline;
     text-underline-offset: 2px;
-}
+} */
 
 .submit{
     width: 100%;
